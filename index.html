@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <title>Login</title>
+    <style>
+        .row{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+        .col{
+            margin: 0;
+            max-width: 35%;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            padding: 0 5% 0 5%;
+        }
+        a{
+            display:inline-block;
+            color: #fff;
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+            color: #ffff00;
+        }
+        /* circle image */
+        .login-img{
+          width: 100%;
+          height: 20%;
+          z-index: 1;
+          position: relative;
+        }
+        .login-img div{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; 
+            background: rgba(224, 255, 255, 0.5);
+            position: absolute;
+        }
+        .login-img img{
+            width: 60%;
+        }
+        /* h1 */
+        .h1{
+          text-align: center; 
+          margin-bottom: 10%; 
+          margin-top: 15%;
+          color: #fff;
+        }
+        /* fontawesome icon */
+        .fas{
+          font-size: 30px;
+        }
+        /* input */
+        .input-group{
+          margin-bottom: 10%;
+        }
+        #Username{
+          height: 50px;
+          border-radius: 0 0.25rem 0.25rem 0;
+        }
+        #Password{
+          height: 50px;
+          border-radius: 0 0.25rem 0.25rem 0;
+        }
+        /* button */
+        .btn{
+          margin-bottom: 10%;
+        }
+        /* checkbox */
+        .custom-control-input:checked ~ .custom-control-label::before {
+          border-color: red;
+          background-color: red;
+        }
+        .custom-control-input:focus ~ .custom-control-label::before {
+          box-shadow:none
+        }
+        .custom-control-label{
+          color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid vh-100">
+      <div class="row d-flex justify-content-center align-items-center">
+            <div class="col">
+              <div class="login-img d-flex justify-content-center align-items-center">
+                  <div class="d-flex justify-content-center align-items-center">
+                      <img src="images/login.png">
+                  </div>
+              </div>
+              <div class="h1"><h1>Sign In</h1></div>
+              <form >
+                  <div class="form-row">
+                      <div class="col-12">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text bg-white" id="inputGroupPrepend3"><i class="fas fa-user"></i></span>
+                          </div>
+                          <input type="text" class="form-control border-left-0" id="Username" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
+                        </div>
+                      </div>
+                    <div class="col-12">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-white" id="inputGroupPrepend3"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control border-left-0" id="Password" placeholder="Password" aria-describedby="inputGroupPrepend3" required>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="Login()">Login</button>                
+                 
+                  <div class="form-group w-100 d-flex align-items-between">
+                      <div class="custom-control custom-checkbox w-50">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Remember me</label>
+                      </div>
+                      <div class="w-50" style="text-align: right;"><a href="#">Forgot Password?</a></div>
+                  </div>
+              </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      let colors = new Array(
+        [62,35,255],
+        [60,255,60],
+        [255,35,98],
+        [45,175,230],
+        [255,0,255],
+        [255,128,0]);
+
+      let step = 0;
+      // color table indices for: 
+      // current color left
+      // next color left
+      // current color right
+      // next color right
+      let colorIndices = [0,1,2,3];
+
+      //transition speed
+      let gradientSpeed = 0.002;
+      
+      setInterval(updateGradient,10);
+      function Login(){
+        if ($('#Username').val().length != "" && $('#Password').val().length != ""){
+          window.location.href = 'html/scene.html';
+          $('#Username').val('')
+        }
+      }
+      function updateGradient(){
+        
+        if ( $===undefined ) {
+          return;
+        }
+        
+        let c0_0 = colors[colorIndices[0]];
+        let c0_1 = colors[colorIndices[1]];
+        let c1_0 = colors[colorIndices[2]];
+        let c1_1 = colors[colorIndices[3]];
+
+        let istep = 1 - step;
+        let r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+        let g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+        let b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+        let color1 = "rgb("+r1+","+g1+","+b1+")";
+
+        let r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+        let g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+        let b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+        let color2 = "rgb("+r2+","+g2+","+b2+")";
+
+        $('.container-fluid').css({
+          background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+            background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+          
+          step += gradientSpeed;
+          if ( step >= 1 ){
+            step %= 1;
+            colorIndices[0] = colorIndices[1];
+            colorIndices[2] = colorIndices[3];
+            
+            //pick two new target color indices
+            //do not pick the same as the current one
+            colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+            colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+          }
+      }
+    
+    </script>
+</body>
+
+</html>
